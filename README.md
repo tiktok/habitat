@@ -6,6 +6,15 @@ integration in CI environment.
 It is also easy to use for developers. No need to execute many commands manually, just run `./hab sync .` to set up
 local development environment.
 
+## Installation
+
+We provide both a binary (hab.pex) and a wrapper script. You can find them in the releases and choose to download one of them as your need.
+
+The simplest way is to download the wrapper using following instruction:
+```shell
+curl -L -O https://github.com/tiktok/habitat/releases/download/0.3.134/hab
+```
+
 ## Usage
 
 1. Generate habitat configuration file in the repo.
