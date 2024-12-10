@@ -103,6 +103,8 @@ class GitFetcher(Fetcher):
                 root_dir=root_dir, name=f'GIT-FETCHER-{self.component.name.replace("/", "_")}'
             )
 
+        source_dir = os.path.abspath(source_dir)
+
         if not is_git_root(source_dir):
             cmd = f'git init {source_dir}'
             await run_git_command(cmd, shell=True, stderr=subprocess.STDOUT)
