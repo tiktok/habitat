@@ -233,7 +233,16 @@ class GitFetcher(Fetcher):
             cmd = f'git --work-tree={target_dir} checkout FETCH_HEAD -- .'
         else:
             cmd = f'git checkout {checkout_args}'
-        await run_git_command(cmd, shell=True, cwd=source_dir, stderr=subprocess.STDOUT)
+        try:
+            await run_git_command(cmd, shell=True, cwd=source_dir, stderr=subprocess.STDOUT)
+        except subprocess.CalledProcessError:
+            logging.warning(
+                f'A checkout for {target_dir} has failed. This might caused by that '
+                f'the target directory for {url} is occupied by another git repository. A clean'
+                ' fetch is on the run.'
+            )
+            rmtree(source_dir)
+            await self.fetch(root_dir, options, *args, **kwargs)
 
         if getattr(self.component, 'enable_lfs', False):
             try:
