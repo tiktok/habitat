@@ -128,4 +128,5 @@ class Sync(Command):
                     ignore_paths_in_git(dep.parent.target_dir, [dep.target_dir], ignore_errors=True)
 
             tree_str = solution.get_pretty_dependency_tree()
+            logging.info(f'Dependencies for {solution.target_dir} are ready')
             logging.debug(f'Dependency tree:\n{tree_str}')
