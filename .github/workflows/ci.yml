@@ -10,7 +10,7 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: tiktok-habitat-ubuntu-22.04-small
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
